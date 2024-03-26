@@ -7,8 +7,8 @@
 - CAN BREAK WORLD RECORD !!!
 ---
 COMMAND:
-- tpi -T 8 -m 8Gi -d 100G -o pi.txt 100G
-- MAX TESTED - NEED 128 GB OF RAM !!!
+- tpi -T 8 -m 6Gi -d 32G -o pi.txt 32G
+- MAX TESTED - NEED 64 GB OF RAM !!!
 - IF YOU HAVE LESS RAM CHANGE TO:
 - tpi -T 8 -m 4Gi -d 10G -o pi.txt 10G
 - AND CALCULATE ONLY 10.000.000.000 DIGITS
