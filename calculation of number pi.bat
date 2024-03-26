@@ -11,7 +11,7 @@ color e
 date /T
 time /T
 color a
-echo calculate Number [PI] with 6 GB of Ram up to 32 Trillion Digits long? 
+echo calculate Number [PI] with 6 GB of Ram up to 32 Billion Digits long? 
 echo (64 GB RAM totaly needed - can crash System - use at own risk)
 echo open my [HOMEPAGE] ?
 echo [exit]
