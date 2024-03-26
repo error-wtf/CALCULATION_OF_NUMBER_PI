@@ -11,7 +11,7 @@ color e
 date /T
 time /T
 color a
-echo calculate Number [PI] with 6 GB of Ram up to 64 Trillion Digits long? 
+echo calculate Number [PI] with 6 GB of Ram up to 62 Trillion Digits long? 
 echo (64 GB RAM totaly needed - can crash System - use at own risk)
 echo open my [HOMEPAGE] ?
 echo [exit]
@@ -42,7 +42,7 @@ start https://lino.lol
 goto :anfang
 
 :INGE
-tpi -T 8 -m 6Gi -d 80G -o pi.txt 64G
+tpi -T 8 -m 6Gi -d 80G -o pi.txt 62G
 echo now writing in file pi.txt?
 pause
 set zahlen="pi.txt"
