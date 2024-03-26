@@ -7,13 +7,13 @@
 - CAN BREAK WORLD RECORD !!!
 ---
 COMMAND:
-tpi -T 8 -m 8Gi -d 100G -o pi.txt 100G
-MAX TESTED !!!
-IF YOU HAVE LESS RAM CHANGE TO:
-tpi -T 8 -m 4Gi -d 10G -o pi.txt 10G
-AND CALCULATE ONLY 10.000.000.000 DIGITS
-4Gi -> 4GB of primary RAM used -> 32GB RAM NEEDED !!!
-2Gi -> 2GB of primary RAM used -> 16GB RAM NEEDED !!!
--d -> DIGITS -> -d 100G -> 100.000.000.000 DIGITS
+- tpi -T 8 -m 8Gi -d 100G -o pi.txt 100G
+- MAX TESTED !!!
+- IF YOU HAVE LESS RAM CHANGE TO:
+- tpi -T 8 -m 4Gi -d 10G -o pi.txt 10G
+- AND CALCULATE ONLY 10.000.000.000 DIGITS
+- 4Gi -> 4GB of primary RAM used -> 32GB RAM NEEDED !!!
+- 2Gi -> 2GB of primary RAM used -> 16GB RAM NEEDED !!!
+- -d -> DIGITS -> -d 100G -> 100.000.000.000 DIGITS
 ---
-ENJOY AT OWN RISK
+ENJOY AT OWN RISK !!!
