@@ -42,7 +42,7 @@ start https://lino.lol
 goto :anfang
 
 :INGE
-tpi -T 8 -m 6Gi -d 100G -o pi.txt 100G
+tpi -T 8 -m 6Gi -d 80G -o pi.txt 80G
 echo now writing in file pi.txt?
 pause
 set zahlen="pi.txt"
