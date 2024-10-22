@@ -1,23 +1,30 @@
 #!/bin/bash
 
-# Update package lists and install pipx if not installed
+# Update package lists and install dependencies
 echo "Updating system and installing dependencies..."
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-venv
+sudo apt-get install -y python3-pip python3-venv dos2unix
 
-# Install pipx
-echo "Installing pipx..."
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
+# Create a Python virtual environment in the current directory
+echo "Creating a Python virtual environment..."
+python3 -m venv venv
 
-# Install gmpy2, psutil, and other necessary libraries using pipx
+# Activate the virtual environment
+echo "Activating the Python virtual environment..."
+source venv/bin/activate
+
+# Install necessary Python libraries inside the virtual environment
 echo "Installing Python libraries gmpy2 and psutil..."
-pipx install gmpy2
-pipx install psutil
+pip install gmpy2 psutil
 
 # Confirm installations
 echo "gmpy2 and psutil have been installed successfully!"
 
 # Start Script
 echo "Starting Python script..."
-python3 pi.py
+python "$PWD/pi.py"
+
+# Deactivate the virtual environment after script execution
+echo "Deactivating the Python virtual environment..."
+deactivate
+
