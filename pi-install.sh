@@ -1,20 +1,23 @@
 #!/bin/bash
 
-echo # Update package lists and install pip if not installed
+# Update package lists and install pipx if not installed
 echo "Updating system and installing dependencies..."
 sudo apt-get update
+sudo apt-get install -y python3-pip python3-venv
 
-echo # Install Python package manager (pip)
-sudo apt-get install -y python3-pip
+# Install pipx
+echo "Installing pipx..."
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
 
-echo # Install gmpy2, psutil, and other necessary libraries
+# Install gmpy2, psutil, and other necessary libraries using pipx
 echo "Installing Python libraries gmpy2 and psutil..."
-pip3 install gmpy2 psutil
+pipx install gmpy2
+pipx install psutil
 
-echo # Confirm installations
+# Confirm installations
 echo "gmpy2 and psutil have been installed successfully!"
 
-echo # Start Script
-Python pi.py 
-
-Pause
+# Start Script
+echo "Starting Python script..."
+python3 pi.py
