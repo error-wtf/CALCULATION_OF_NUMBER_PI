@@ -1,19 +1,36 @@
-echo # Update package lists and install pip if not installed
-echo "Updating system and installing dependencies..."
-sudo apt-get update
+@echo off
 
-echo # Install Python package manager (pip)
-sudo apt-get install -y python3-pip
+:: Update system and check if Python is installed
+echo Checking if Python is installed...
+python --version
+if %ERRORLEVEL% neq 0 (
+    echo Python is not installed. Please install Python before running this script.
+    pause
+    exit /b
+)
 
-echo # Install gmpy2, psutil, and other necessary libraries
-echo "Installing Python libraries gmpy2 and psutil..."
-pip3 install gmpy2 psutil
+:: Create a virtual environment in the current directory
+echo Creating a Python virtual environment...
+python -m venv venv
 
-echo # Confirm installations
-echo "gmpy2 and psutil have been installed successfully!"
+:: Activate the virtual environment
+echo Activating the Python virtual environment...
+call venv\Scripts\activate
 
-echo # Start Script
-Python pi.py 
+:: Install necessary Python libraries
+echo Installing Python libraries gmpy2 and psutil...
+pip install gmpy2 psutil
 
-Pause
+:: Confirm installations
+echo gmpy2 and psutil have been installed successfully!
 
+:: Start the Python script
+echo Starting Python script...
+python pi.py
+
+:: Deactivate the virtual environment
+echo Deactivating the Python virtual environment...
+deactivate
+
+:: Pause the script to see output before exiting
+pause
