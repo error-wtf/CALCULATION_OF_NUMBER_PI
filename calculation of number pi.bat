@@ -12,6 +12,7 @@ date /T
 time /T
 color a
 echo calculate Number [PI] with 6 GB of Ram up to 32 Billion Digits long? 
+echo calculate Number Pi with "python" script short version (1.000.000 digits)
 echo (64 GB RAM totaly needed - can crash System - use at own risk)
 echo open my [HOMEPAGE] ?
 echo [exit]
@@ -29,6 +30,9 @@ if /i %variable% == SOMEONE goto :M
 if /i %variable% == HOMEPAGE goto :CASU
 if /i %variable% == Homepage goto :CASU
 if /i %variable% == homepage goto :CASU
+if /i %variable% == python goto :python
+if /i %variable% == Python goto :python
+if /i %variable% == PYTTHON goto :python
 if /i %variable% == EXIT goto :Q
 if /i %variable% == exit goto :Q
 if /i %variable% == Exit goto :Q
@@ -54,6 +58,12 @@ goto :anfang
 :M
 @echo off
 y-cruncher.exe
+pause
+goto :anfang
+
+:python 
+@echo off
+.\pi-install-python.bat
 pause
 goto :anfang
 
