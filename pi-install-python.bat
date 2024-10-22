@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo # Update package lists and install pip if not installed
 echo "Updating system and installing dependencies..."
 sudo apt-get update
@@ -18,3 +16,4 @@ echo # Start Script
 Python pi.py 
 
 Pause
+
