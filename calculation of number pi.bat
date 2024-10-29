@@ -12,7 +12,9 @@ date /T
 time /T
 color a
 echo Calculate the number [PI] with 6 GB of RAM up to 32 billion digits?
+color 4
 echo (64 GB RAM required in total - may crash system - use at your own risk)
+color a
 echo Calculate the number Pi with a [python] script (short version, 1,000,000 digits)
 echo Or would you like to see [Fractals]?
 echo Or would you like to learn about [Fibonacci]?
