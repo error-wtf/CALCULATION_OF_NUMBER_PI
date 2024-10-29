@@ -5,6 +5,9 @@
 - CAN WRITE RAM FULL AND BREAK SYSTEM 
 - USE AT OWN RISK !!!
 - CAN BREAK WORLD RECORD !!!
+- ![MENU](https://github.com/user-attachments/assets/2186ed68-8d44-48b1-b72d-b2c0b3c26bb5)
+- ![pi screenshot](https://github.com/user-attachments/assets/f3e10cd1-a066-4770-9a69-8b77610e91a0)
+
 ---
 COMMAND:
 - tpi -T 8 -m 6Gi -d 32G -o pi.txt 32G
