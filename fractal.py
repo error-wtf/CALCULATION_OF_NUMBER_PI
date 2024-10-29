@@ -11,6 +11,14 @@ def mandelbrot(c, max_iter):
         z = z * z + c
     return max_iter
 
+# Function for the Julia set with a constant complex parameter c
+def julia(z, c, max_iter):
+    for n in range(max_iter):
+        if abs(z) > 2:
+            return n
+        z = z * z + c
+    return max_iter
+
 # Fractal generation functions
 def generate_fractal(fractal_type, x_min, x_max, y_min, y_max, width, height, max_iter, progress_callback, c=0+0j):
     x, y = np.linspace(x_min, x_max, width), np.linspace(y_min, y_max, height)
@@ -18,19 +26,36 @@ def generate_fractal(fractal_type, x_min, x_max, y_min, y_max, width, height, ma
     Z = X + 1j * Y
     fractal = np.zeros(Z.shape, dtype=int)
     
-    for i in range(width):
-        for j in range(height):
-            if fractal_type == "Mandelbrot":
+    if fractal_type == "Mandelbrot":
+        for i in range(width):
+            for j in range(height):
                 fractal[j, i] = mandelbrot(Z[j, i], max_iter)
-            elif fractal_type == "Julia":
-                fractal[j, i] = mandelbrot(Z[j, i] + c, max_iter)
-            elif fractal_type == "Burning Ship":
+            progress_callback((i + 1) / width * 100)
+                
+    elif fractal_type == "Julia":
+        julia_constant = -0.4 + 0.6j  # A typical constant for generating Julia sets
+        for i in range(width):
+            for j in range(height):
+                fractal[j, i] = julia(Z[j, i], julia_constant, max_iter)
+            progress_callback((i + 1) / width * 100)
+                
+    elif fractal_type == "Burning Ship":
+        for i in range(width):
+            for j in range(height):
                 Z[j, i] = abs(Z[j, i].real) + 1j * abs(Z[j, i].imag)
                 fractal[j, i] = mandelbrot(Z[j, i], max_iter)
-            elif fractal_type == "Tricorn":
+            progress_callback((i + 1) / width * 100)
+                
+    elif fractal_type == "Tricorn":
+        for i in range(width):
+            for j in range(height):
                 Z[j, i] = np.conj(Z[j, i])**2 + Z[j, i]
                 fractal[j, i] = mandelbrot(Z[j, i], max_iter)
-            elif fractal_type == "Newton":
+            progress_callback((i + 1) / width * 100)
+                
+    elif fractal_type == "Newton":
+        for i in range(width):
+            for j in range(height):
                 z = Z[j, i]
                 for n in range(max_iter):
                     dz = (z**3 - 1) / (3 * z**2)
@@ -40,17 +65,9 @@ def generate_fractal(fractal_type, x_min, x_max, y_min, y_max, width, height, ma
                         break
                 else:
                     fractal[j, i] = max_iter
-
-        # Update progress
-        progress_callback((i + 1) / width * 100)
-    
+            progress_callback((i + 1) / width * 100)
+                
     return fractal
-
-# Display initial Mandelbrot fractal
-width, height = 800, 800
-x_min, x_max, y_min, y_max = -2.0, 1.0, -1.5, 1.5
-max_iter = 50
-fractal_type = "Mandelbrot"
 
 # Progress Window
 def show_progress(progress):
@@ -65,8 +82,8 @@ def show_progress(progress):
 
 # Main fractal window
 fig, ax = plt.subplots()
-im = ax.imshow(generate_fractal(fractal_type, x_min, x_max, y_min, y_max, width, height, max_iter, lambda x: None),
-               cmap='twilight', extent=[x_min, x_max, y_min, y_max])
+im = ax.imshow(generate_fractal("Mandelbrot", -2.0, 1.0, -1.5, 1.5, 800, 800, 50, lambda x: None),
+               cmap='twilight', extent=[-2.0, 1.0, -1.5, 1.5])
 plt.colorbar(im, ax=ax)
 
 # Update function for interactive sliders
@@ -82,14 +99,14 @@ def update(val):
     plt.show()
 
     # Generate and display new fractal with progress
-    fractal_data = generate_fractal(fractal_type, x_min, x_max, y_min, y_max, width, height, int(max_iter), show_progress)
+    fractal_data = generate_fractal(fractal_type, -2.0, 1.0, -1.5, 1.5, 800, 800, int(max_iter), show_progress)
     plt.close(progress_fig)  # Close progress window once done
     im.set_data(fractal_data)
     fig.canvas.draw_idle()
 
 # Sliders for iterations
 iter_ax = plt.axes([0.2, 0.01, 0.65, 0.03])
-iter_slider = Slider(iter_ax, 'Iterations', 10, 200, valinit=max_iter)
+iter_slider = Slider(iter_ax, 'Iterations', 10, 200, valinit=50)
 iter_slider.on_changed(update)
 
 # Radio buttons for fractal type selection
