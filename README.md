@@ -6,11 +6,16 @@
 - USE AT OWN RISK !!!
 - CAN BREAK WORLD RECORD !!!
 - WINDOES MENU
-- Run 1. start.bat
+- Run
+- 1. start.bat
 - ![run-command](https://github.com/user-attachments/assets/5abec9d0-f8a1-4a5a-82ed-c7b5624d55d9)
 - LINUX MENU
-- Run 1. chmod a+x start.sh 2. ./start.sh
-- If Python Dependencies are not installed yed start before 1. chmod a+x pi-install.sh 2. ./pi-install.sh 
+- Run
+- 1. "chmod a+x start.sh" 2.
+  2. "./start.sh"
+- If Python Dependencies are not installed yed start before
+- 1. "chmod a+x pi-install.sh"
+  2. "./pi-install.sh" 
 - ![linux-menu](https://github.com/user-attachments/assets/a9c577f5-36e8-4000-a0c2-18c77b6fa21f)
 
 
