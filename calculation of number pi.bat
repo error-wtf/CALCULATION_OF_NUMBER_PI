@@ -1,9 +1,9 @@
 @echo off
-:anfang
+:begin
 cls
 color c
-echo THANK YOU !!! 
-echo HERE IS A SCRIPT TO CALCULATE PI AFTER FORMULA OF CHUDNOVSKY
+echo THANK YOU !!!
+echo HERE IS A SCRIPT TO CALCULATE PI USING THE FORMULA OF CHUDNOVSKY
 pause
 :B
 cls
@@ -11,15 +11,17 @@ color e
 date /T
 time /T
 color a
-echo calculate Number [PI] with 6 GB of Ram up to 32 Billion Digits long? 
-echo calculate Number Pi with "python" script short version (1.000.000 digits)
-echo (64 GB RAM totaly needed - can crash System - use at own risk)
-echo open my [HOMEPAGE] ?
+echo Calculate the number [PI] with 6 GB of RAM up to 32 billion digits?
+echo (64 GB RAM required in total - may crash system - use at your own risk)
+echo Calculate the number Pi with a [python] script (short version, 1,000,000 digits)
+echo Or would you like to see [Fractals]?
+echo Or would you like to learn about [Fibonacci]?
+echo Or would you like to calculate the Square [Root]?
+echo Or would you like to calculate the [Square]?
+echo Open my [HOMEPAGE]?
 echo [exit]
 
-
 set /p variable=
-
 
 if /i %variable% == PI goto :INGE
 if /i %variable% == Pi goto :INGE
@@ -32,52 +34,76 @@ if /i %variable% == Homepage goto :CASU
 if /i %variable% == homepage goto :CASU
 if /i %variable% == python goto :python
 if /i %variable% == Python goto :python
-if /i %variable% == PYTTHON goto :python
+if /i %variable% == PYTHON goto :python
 if /i %variable% == EXIT goto :Q
-if /i %variable% == exit goto :Q
 if /i %variable% == Exit goto :Q
+if /i %variable% == exit goto :Q
+if /i %variable% == FRACTALS goto :FRACTAL
+if /i %variable% == Fractals goto :FRACTAL
+if /i %variable% == fractals goto :FRACTAL
+if /i %variable% == FIBONACCI goto :FIBONACI
+if /i %variable% == Fibonacci goto :FIBONACI
+if /i %variable% == fibonacci goto :FIBONACI
+if /i %variable% == ROOT goto :WURZEL
+if /i %variable% == Root goto :WURZEL
+if /i %variable% == root goto :WURZEL
+if /i %variable% == SQUARE goto :QUADRAT
+if /i %variable% == Square goto :QUADRAT
+if /i %variable% == square goto :QUADRAT
 
-
-goto :anfang
+goto :begin
 
 :CASU
 @echo off
 start https://lino.lol
-goto :anfang
+goto :begin
 
 :INGE
 tpi -T 8 -m 6Gi -d 32G -o pi.txt 32G
-echo now writing in file pi.txt?
+echo Now writing to file pi.txt...
 pause
 set zahlen="pi.txt"
-type %zahlen% 
+type %zahlen%
 echo END OF DATA
 pause
-goto :anfang
+goto :begin
 
 :M
 @echo off
-y-cruncher.exe
+call y-cruncher.exe
 pause
-goto :anfang
+goto :begin
 
 :python 
 @echo off
-.\pi-install-python.bat
+call pi-install-python.bat
 pause
-goto :anfang
+goto :begin
 
-
-:LINO
-echo off
-cls
-color c
-echo ERROR - GURU IS MEDITATING
+:FRACTAL
+@echo off
+call fractal-install.bat
 pause
-goto :anfang
+goto :begin
+
+:FIBONACI
+@echo off
+call fibonaci.bat
+pause
+goto :begin
+
+:WURZEL
+@echo off
+call python wurzel.py
+pause
+goto :begin
+
+:QUADRAT
+@echo off
+call python quadrat.py
+pause
+goto :begin
 
 :Q
 @echo off
 exit
-
-
