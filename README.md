@@ -12,7 +12,7 @@
 - LINUX MENU
 - Run
 - chmod a+x start.sh
-- ./start.sh"
+- ./start.sh
 - If Python Dependencies are not installed yed start before
 - chmod a+x pi-install.sh
 - ./pi-install.sh
