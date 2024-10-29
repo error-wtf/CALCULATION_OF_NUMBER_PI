@@ -6,7 +6,8 @@
 - USE AT OWN RISK !!!
 - CAN BREAK WORLD RECORD !!!
 - ![MENU](https://github.com/user-attachments/assets/2186ed68-8d44-48b1-b72d-b2c0b3c26bb5)
-- ![pi screenshot](https://github.com/user-attachments/assets/f3e10cd1-a066-4770-9a69-8b77610e91a0)
+- ![run-command](https://github.com/user-attachments/assets/5abec9d0-f8a1-4a5a-82ed-c7b5624d55d9)
+
 
 ---
 COMMAND:
