@@ -21,8 +21,8 @@ pip install gmpy2 psutil
 echo "gmpy2 and psutil have been installed successfully!"
 
 # Start Script
-echo "Starting Python script..."
-python "$PWD/pi.py"
+#echo "Starting Python script..."
+#python "$PWD/pi.py"
 
 # Deactivate the virtual environment after script execution
 echo "Deactivating the Python virtual environment..."
