@@ -50,7 +50,8 @@ B() {
         PI|Pi|pi|\[PI\]) INGE ;;  # Accepts PI in various forms, including [PI]
         someone|Someone|SOMEONE) M ;;
         HOMEPAGE|Homepage|homepage) CASU ;;
-        install|Install|INSTALL) install ;;
+        install|Install|INSTALL) install_dependencies ;;
+        python|Python|PYTHON) python_script ;;
         EXIT|Exit|exit) Q ;;
         FRACTALS|Fractals|fractals) FRACTAL ;;
         FIBONACCI|Fibonacci|fibonacci) FIBONACI ;;
@@ -114,17 +115,15 @@ M() {
     begin
 }
 
-install() {
-    echo "Running Python script to calculate PI..."
-    
-    # Prüfen, ob eine Installation der Abhängigkeiten erforderlich ist
-    echo "Normally under Linux all dependencies are set. If not, try [install] them."
-    read -p "Type 'install' to proceed with dependency installation or press [Enter] to skip: " choice
+install_dependencies() {
+    echo "Checking and installing dependencies if necessary..."
+    ./pi-install.sh
+    read -p "Dependencies installed. Press [Enter] to continue..."
+    begin
+}
 
-    if [[ "$choice" == "install" ]]; then
-        ./pi-install.sh
-    fi
-    
+python_script() {
+    echo "Running Python script to calculate PI..."
     ./pi-start.sh
     read -p "Press [Enter] to continue..."
     begin
@@ -165,3 +164,4 @@ Q() {
 
 # Start the script
 begin
+
