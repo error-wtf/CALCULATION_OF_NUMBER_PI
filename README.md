@@ -5,7 +5,7 @@
 - CAN WRITE RAM FULL AND BREAK SYSTEM 
 - USE AT OWN RISK !!!
 - CAN BREAK WORLD RECORD !!!
-- WINDOES MENU
+- WINDOWS MENU
 - Run
 - 1. start.bat
 - ![run-command](https://github.com/user-attachments/assets/5abec9d0-f8a1-4a5a-82ed-c7b5624d55d9)
