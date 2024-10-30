@@ -13,7 +13,7 @@
 - Run
 - chmod a+x *.sh
 - ./start.sh
-- If Python Dependencies are not installed yed start before
+- If Python Dependencies are not installed yet start before
 - chmod a+x *.sh
 - ./pi-install.sh
 - ![linux-menu](https://github.com/user-attachments/assets/a9c577f5-36e8-4000-a0c2-18c77b6fa21f)
