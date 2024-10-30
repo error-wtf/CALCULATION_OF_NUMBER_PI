@@ -16,7 +16,8 @@
 - If Python Dependencies are not installed yet -> start before:
 - chmod a+x *.sh
 - ./pi-install.sh
-- ![linux-menu](https://github.com/user-attachments/assets/a9c577f5-36e8-4000-a0c2-18c77b6fa21f)
+- ![linux-menu](https://github.com/user-attachments/assets/9eb0f32e-5f25-4315-a2d6-c44e89806579)
+
 
 
 
