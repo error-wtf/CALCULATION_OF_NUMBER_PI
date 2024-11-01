@@ -14,9 +14,11 @@
 - sudo chmod a+x *.sh
 - sudo ./start.sh
 - If Python Dependencies are not installed yet -> start before:
+- sudo apt install python3-gmpy2
 - sudo chmod a+x *.sh
 - sudo ./pi-install.sh
 - ![linux-menu](https://github.com/user-attachments/assets/9eb0f32e-5f25-4315-a2d6-c44e89806579)
+- WSL not supported because of DISPAY ERROR OF MATHPLOIT - FIND YOUR OWN WORKAROUND - AS YOU ARE IN WINDOWS -> USE WINDOWS VERSION
 
 
 
