@@ -11,11 +11,11 @@
 - ![run-command](https://github.com/user-attachments/assets/5abec9d0-f8a1-4a5a-82ed-c7b5624d55d9)
 - LINUX MENU
 - Run
-- chmod a+x *.sh
-- ./start.sh
+- sudo chmod a+x *.sh
+- sudo ./start.sh
 - If Python Dependencies are not installed yet -> start before:
-- chmod a+x *.sh
-- ./pi-install.sh
+- sudo chmod a+x *.sh
+- sudo ./pi-install.sh
 - ![linux-menu](https://github.com/user-attachments/assets/9eb0f32e-5f25-4315-a2d6-c44e89806579)
 
 
