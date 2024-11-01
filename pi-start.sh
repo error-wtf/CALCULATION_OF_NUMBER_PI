@@ -1,5 +1,6 @@
 #!/bin/bash
 
-# Start the pi.py script using the active Python environment
+# Startet das Python-Skript pi.py
 echo "Starting Python script pi.py..."
-python pi.py
+python3 pi.py
+
