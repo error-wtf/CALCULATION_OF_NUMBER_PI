@@ -4,7 +4,7 @@
 # Update package lists and install dependencies
 echo "Updating system and installing dependencies..."
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-venv dos2unix
+sudo apt-get install -y python3-pip python3-venv dos2unix python3-gmpy2
 
 # Erstellt einen Symlink, sodass `python` als `python3` aufgerufen werden kann
 sudo ln -s /usr/bin/python3 /usr/bin/python

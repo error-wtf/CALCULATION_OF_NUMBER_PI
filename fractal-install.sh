@@ -1,7 +1,8 @@
 #!/bin/bash
 # Install Python dependencies
 echo "Installing dependencies..."
-pip install numpy matplotlib
+apt install python3-gmpy2
+pip install numpy matplotlib --root-user-action=ignore
 
 # Run the fractal script
 echo "Running the fractal script..."
