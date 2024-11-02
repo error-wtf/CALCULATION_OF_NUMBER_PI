@@ -41,7 +41,7 @@ B() {
     echo -e "\033[1;32mOpen my [HOMEPAGE]?\033[0m"
     echo "[exit]"
     echo -e "\033[1;32mPS: To calculate Pi longer than 1,000,000 digits - you have to switch to Windows for C++ instead of Python.\033[0m"
-	echo -e "\033[1;32mPS: Or to calculate Pi longer than 1,000,000 digits inside Linux - I made a [workaround] - but it’s not that fancy and takes a lot of calculation time.\033[0m"
+    echo -e "\033[1;32mPS: Or to calculate Pi longer than 1,000,000 digits inside Linux - I made a [workaround] - but it’s not that fancy and takes a lot of calculation time.\033[0m"
     read -p "Choose an option: " variable
 
     case $variable in
@@ -108,8 +108,12 @@ install_dependencies() {
 }
 
 python_script() {
-    echo "Running Python script to calculate PI..."
-    python3 big-pi.py
+    echo "Running installation script for Python dependencies..."
+    ./pi-install.sh  # First install dependencies
+
+    echo "Starting Python script to calculate PI..."
+    ./pi-start.sh  # Then start the calculation
+
     read -p "Press [Enter] to continue..."
     begin
 }
