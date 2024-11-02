@@ -8,7 +8,8 @@
 - WINDOWS MENU
 - Run
 - 1. start.bat
-- ![run-command](https://github.com/user-attachments/assets/5abec9d0-f8a1-4a5a-82ed-c7b5624d55d9)
+- ![windows-menu](https://github.com/user-attachments/assets/9331c833-28b2-4baa-965b-ebcf2604bf5a)
+
 - LINUX MENU
 - Run
 - sudo chmod a+x *.sh
@@ -17,7 +18,8 @@
 - sudo apt install python3-gmpy2
 - sudo chmod a+x *.sh
 - sudo ./pi-install.sh
-- ![linux-menu](https://github.com/user-attachments/assets/9eb0f32e-5f25-4315-a2d6-c44e89806579)
+- ![linux-menu](https://github.com/user-attachments/assets/64c8373c-a8e5-4cbf-9c65-ef3e1d859d1c)
+
 - WSL not supported because of DISPLAY ERROR OF MATHPLOIT -  AS YOU ARE IN WINDOWS -> USE WINDOWS VERSION
 
 
