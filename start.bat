@@ -16,6 +16,7 @@ color 4
 echo (64 GB RAM required in total - may crash system - use at your own risk)
 color a
 echo Calculate the number Pi with a [python] script (short version, 1,000,000 digits)
+echo PS: I made a [workaround] to calculate Pi with more digits, but the process status could not be made so fancy in python.
 echo Or would you like to see [Fractals]?
 echo Or would you like to learn about [Fibonacci]?
 echo Or would you like to calculate the Square [Root]?
@@ -52,6 +53,9 @@ if /i %variable% == root goto :WURZEL
 if /i %variable% == SQUARE goto :QUADRAT
 if /i %variable% == Square goto :QUADRAT
 if /i %variable% == square goto :QUADRAT
+if /i %variable% == WORKAROUND goto :WORKAROUND
+if /i %variable% == Workaround goto :WORKAROUND
+if /i %variable% == workaround goto :WORKAROUND
 
 goto :begin
 
@@ -103,6 +107,13 @@ goto :begin
 :QUADRAT
 @echo off
 call python quadrat.py
+pause
+goto :begin
+
+:WORKAROUND
+@echo off
+call big-pi-install.bat
+call python big-pi.py
 pause
 goto :begin
 
