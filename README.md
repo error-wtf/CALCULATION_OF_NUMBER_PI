@@ -25,7 +25,7 @@
 
 WATCH THIS DISCLAIMER:
 
-[![Watch the video]]([https://youtu.be/vt5fpE0bzSY](https://www.youtube.com/watch?v=04pAAjnatFU))
+[![Watch the video]](https://www.youtube.com/watch?v=04pAAjnatFU)
 
 
 
