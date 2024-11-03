@@ -16,7 +16,7 @@ color 4
 echo (64 GB RAM required in total - may crash system - use at your own risk)
 color a
 echo Calculate the number Pi with a [python] script (short version, 1,000,000 digits)
-echo PS: I made a [workaround] to calculate Pi with more digits, but the process status could not be made so fancy in python.
+echo PS: I made a [workaround] to calculate Pi with more digits, but 64 GB RAM NEEDED !!! and its not so fancy like in python.
 echo Or would you like to see [Fractals]?
 echo Or would you like to learn about [Fibonacci]?
 echo Or would you like to calculate the Square [Root]?
