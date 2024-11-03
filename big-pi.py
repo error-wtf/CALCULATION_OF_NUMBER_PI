@@ -17,13 +17,14 @@ def chudnovsky_chunk(start, end, chunk_id):
     print(f"Chunk {chunk_id} saved to disk.")
     return f"chunk_{chunk_id}.tmp"  # Return file name instead of data
 
-# Calculate chunk size based on 16GB memory limit
-def calculate_chunk_size(digits, num_terms=1000, memory_limit_gb=16):
+# Calculate chunk size based on 48GB memory limit, with a maximum chunk size of 8GB
+def calculate_chunk_size(digits, num_terms=1000, memory_limit_gb=48, max_chunk_gb=8):
     bytes_per_term = 32  # Approximate bytes per term for high precision
     terms_per_gb = (1024 ** 3) / bytes_per_term
-    max_terms = int(memory_limit_gb * terms_per_gb)  # Max terms fitting into 16GB
-    chunk_size = min(max_terms, num_terms // os.cpu_count())
-    print(f"Calculated chunk size: {chunk_size} terms (with memory limit {memory_limit_gb} GB)")
+    max_terms = int(memory_limit_gb * terms_per_gb)  # Total terms fitting into 48GB
+    chunk_terms = int(max_chunk_gb * terms_per_gb)   # Terms for 8GB chunks
+    chunk_size = min(chunk_terms, num_terms // os.cpu_count())
+    print(f"Calculated chunk size: {chunk_size} terms (with max chunk {max_chunk_gb} GB, total memory {memory_limit_gb} GB)")
     return chunk_size
 
 # Function to sum results from each chunk file
@@ -57,7 +58,7 @@ def chudnovsky_algorithm(digits, num_terms=1000):
     return pi
 
 def calculate_pi(digits):
-    print(f"Calculating Pi to {digits} digits with a 16 GB memory limit.")
+    print(f"Calculating Pi to {digits} digits with a 48 GB memory limit.")
     pi_value = chudnovsky_algorithm(digits)
     print("Calculation completed.")
     
