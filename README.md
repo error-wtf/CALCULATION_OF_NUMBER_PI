@@ -21,6 +21,7 @@
 - ![linux-menu](https://github.com/user-attachments/assets/64c8373c-a8e5-4cbf-9c65-ef3e1d859d1c)
 
 - WSL not supported because of DISPLAY ERROR OF MATHPLOIT -  AS YOU ARE IN WINDOWS -> USE WINDOWS VERSION
+- WORKAROUND for longer digits NEEDS 64 GB RAM !!! CAN CAUSE MEMORY OVERFLOW !!!
 
 
 
