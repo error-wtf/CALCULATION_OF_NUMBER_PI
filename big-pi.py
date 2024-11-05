@@ -13,7 +13,6 @@ def chudnovsky_term(k):
     )
     L = 13591409 + 545140134 * k
     X = (-262537412640768000) ** k
-    K = mpmath.mpf(426880 * math.sqrt(10005))
     term = M * L / X
     return term
 
@@ -54,6 +53,11 @@ def calculate_pi(digits, max_memory_gb):
     try:
         C = 426880 * mpmath.sqrt(10005)
         pi_value = C / total_sum
+
+        # Verify the length of calculated Pi before writing
+        if len(str(pi_value)) - 2 < digits:  # Subtract 2 for "3."
+            print("Warning: Calculated Pi length is shorter than expected. Calculation might need adjustments.")
+            return
     except Exception as e:
         print(f"Error calculating final Pi value: {e}")
         return
