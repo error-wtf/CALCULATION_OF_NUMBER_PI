@@ -130,6 +130,7 @@ void Chudnovsky::computePi(size_t available_disk) {
 }
 
 int main() {
+    cout << "Copyright (C) 2024 Lino Casu. All rights reserved." << endl;
     try {
         size_t available_ram = getAvailableRAM();
         size_t available_disk = getAvailableDiskSpace();
