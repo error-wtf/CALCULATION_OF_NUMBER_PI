@@ -1,0 +1,183 @@
+#include <iostream>
+#include <fstream>
+#include <gmpxx.h>
+#include <cmath>
+#include <thread>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
+using namespace std;
+
+// Header-Funktion für Programmdetails
+void displayHeader() {
+    cout << "----------------------------------------" << endl;
+    cout << "Pi-Berechnung mit GMP" << endl;
+    cout << "Copyright (c) 2024 Lino Philipp Casu" << endl;
+    cout << "Alle Rechte vorbehalten." << endl;
+    cout << "----------------------------------------" << endl << endl;
+}
+
+// Funktion zum Anzeigen der Programmeinstellungen
+void displaySettings(size_t ram_mb, size_t file_size_gb, int digits, int cores) {
+    cout << "Einstellungen:" << endl;
+    cout << "  Verfügbarer RAM: " << ram_mb << " MB" << endl;
+    cout << "  Maximale Dateigröße: " << file_size_gb << " GB" << endl;
+    cout << "  Zu berechnende Stellen: " << digits << endl;
+    cout << "  Verwendete CPU-Kerne: " << cores << endl << endl;
+}
+
+// Funktion zur Fortschrittsanzeige
+void displayProgress(int completed_terms, int total_terms) {
+    double progress = (static_cast<double>(completed_terms) / total_terms) * 100.0;
+    cout << "Fortschritt: " << progress << "% abgeschlossen (" 
+         << completed_terms << " von " << total_terms << " Termen)" << endl;
+}
+
+// Funktion zur Ausgabe der Ergebnisse
+void displayResults(const mpf_class& pi, const string& output_file, int digits) {
+    cout << "\nErgebnisse:" << endl;
+    cout << "  Die ersten 1 Million Stellen von Pi:" << endl;
+
+    if (digits > 1000000) {
+        cout.precision(1000000);
+    } else {
+        cout.precision(digits);
+    }
+    cout << "  " << pi << endl;
+
+    cout << "  Die vollständige Berechnung wurde in der Datei '" 
+         << output_file << "' gespeichert." << endl;
+}
+
+// Chudnovsky-Klasse
+class Chudnovsky {
+    mpz_class A, B, C, C3_24, D, E;
+    int DIGITS, N;
+    size_t MAX_CHUNK_SIZE;
+    int NUM_THREADS;
+
+public:
+    Chudnovsky(int digits, size_t chunk_size, int num_threads);
+    mpf_class computePi(size_t max_file_size);
+    static size_t getAvailableRAM();
+    static int getAvailableCores();
+    static size_t calculateChunkSize(size_t available_ram);
+    static size_t suggestMaxDigits(size_t max_file_size);
+};
+
+Chudnovsky::Chudnovsky(int digits, size_t chunk_size, int num_threads) {
+    DIGITS = digits;
+    A = 13591409;
+    B = 545140134;
+    C = 640320;
+    C3_24 = C * C * C / 24;
+    D = 426880;
+    E = 10005;
+    N = DIGITS / 14.1816474627254776555;
+    MAX_CHUNK_SIZE = chunk_size;
+    NUM_THREADS = num_threads;
+}
+
+mpf_class Chudnovsky::computePi(size_t max_file_size) {
+    mpz_class P_total = 1, Q_total = 1, T_total = 0;
+    size_t current_file_size = 0;
+
+    for (int i = 0; i < N; i += MAX_CHUNK_SIZE) {
+        int end = min(i + (int)MAX_CHUNK_SIZE, N);
+
+        // Fortschritt anzeigen
+        displayProgress(i, N);
+
+        // Simpler Term-Berechnungsplatzhalter
+        P_total *= i + 1;
+        Q_total *= i + 2;
+        T_total = T_total * Q_total + P_total * (A + B * i);
+    }
+
+    // Pi berechnen
+    mpf_set_default_prec(DIGITS * log2(10));
+    mpf_class sqrtC((mpf_class)E);
+    sqrtC = sqrt(sqrtC);
+    mpf_class pi = D * sqrtC * Q_total;
+    pi /= (A * Q_total + T_total);
+
+    // Pi speichern
+    ofstream pi_file("pi.txt");
+    if (!pi_file) {
+        cerr << "Fehler beim Öffnen der Datei für Pi." << endl;
+        return pi;
+    }
+    pi_file.precision(DIGITS);
+    pi_file << pi << endl;
+
+    return pi;
+}
+
+size_t Chudnovsky::getAvailableRAM() {
+#ifdef _WIN32
+    MEMORYSTATUSEX memStatus;
+    memStatus.dwLength = sizeof(memStatus);
+    GlobalMemoryStatusEx(&memStatus);
+    return memStatus.ullAvailPhys;
+#else
+    long pages = sysconf(_SC_AVPHYS_PAGES);
+    long page_size = sysconf(_SC_PAGE_SIZE);
+    return pages * page_size;
+#endif
+}
+
+int Chudnovsky::getAvailableCores() {
+    return thread::hardware_concurrency();
+}
+
+size_t Chudnovsky::calculateChunkSize(size_t available_ram) {
+    size_t usable_ram = static_cast<size_t>(available_ram * 0.8);
+    size_t term_memory = 20480;
+    return usable_ram / term_memory;
+}
+
+size_t Chudnovsky::suggestMaxDigits(size_t max_file_size) {
+    size_t max_terms = max_file_size / 20480;
+    return max_terms * 14.1816474627254776555;
+}
+
+int main() {
+    try {
+        displayHeader();
+
+        size_t available_ram = Chudnovsky::getAvailableRAM();
+        size_t ram_mb = available_ram / (1024 * 1024);
+        size_t chunk_size = Chudnovsky::calculateChunkSize(available_ram);
+
+        cout << "Geben Sie die maximale Dateigröße (in GB) ein: ";
+        size_t max_file_size_gb;
+        cin >> max_file_size_gb;
+
+        size_t max_file_size = max_file_size_gb * 1024 * 1024 * 1024;
+        size_t max_digits = Chudnovsky::suggestMaxDigits(max_file_size);
+
+        cout << "Geben Sie die Anzahl der Stellen ein (oder 0 für vorgeschlagenen Wert): ";
+        int digits;
+        cin >> digits;
+        if (digits == 0) digits = max_digits;
+
+        int cores = Chudnovsky::getAvailableCores();
+        displaySettings(ram_mb, max_file_size_gb, digits, cores);
+
+        Chudnovsky calculator(digits, chunk_size, cores);
+        mpf_class pi = calculator.computePi(max_file_size);
+
+        displayResults(pi, "pi.txt", digits);
+
+    } catch (exception &e) {
+        cerr << "Fehler: " << e.what() << endl;
+        return -1;
+    }
+
+    return 0;
+}
+
