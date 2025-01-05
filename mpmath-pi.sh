@@ -1,41 +1,35 @@
 #!/bin/bash
 
-# Ensure the script is run with superuser privileges
+# Ensure the script is run as root
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root. Use sudo." 
+   echo "This script must be run as root. Use sudo."
    exit 1
 fi
 
-# Check if Python is installed
-if ! command -v python3 &> /dev/null
-then
+# Check if Python3 is installed
+if ! command -v python3 &> /dev/null; then
     echo "Python3 is not installed. Installing..."
     apt update && apt install -y python3 python3-pip
 else
     echo "Python3 is already installed."
 fi
 
-# Check if pip is installed
-if ! command -v pip3 &> /dev/null
-then
-    echo "pip is not installed. Installing..."
-    python3 -m ensurepip --upgrade
-    python3 -m pip install --upgrade pip
-else
-    echo "pip is already installed."
-fi
+# Install or upgrade pip
+echo "Upgrading pip..."
+python3 -m ensurepip --upgrade
+python3 -m pip install --upgrade pip
 
-# Install mpmath
-echo "Installing mpmath..."
-pip3 install mpmath
+# Install dependencies
+echo "Installing mpmath and psutil..."
+python3 -m pip install mpmath psutil
 
-# Confirm installation
-if python3 -c "import mpmath" &> /dev/null
-then
-    echo "mpmath successfully installed."
+# Verify installation
+echo "Verifying installation..."
+if python3 -c "import mpmath, psutil" &> /dev/null; then
+    echo "mpmath and psutil successfully installed."
 else
-    echo "Failed to install mpmath. Please check your pip configuration."
+    echo "Failed to install mpmath or psutil. Please check for issues."
     exit 1
 fi
 
-echo "All dependencies installed successfully."
+echo "Dependencies installed successfully."

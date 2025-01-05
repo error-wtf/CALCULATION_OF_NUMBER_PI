@@ -1,6 +1,7 @@
 import math
 import os
 from mpmath import mp, mpf, factorial
+import psutil
 
 class MPMathPiCalculator:
     def __init__(self, digits, chunk_size=None, verbose=True):
@@ -89,8 +90,23 @@ class MPMathPiCalculator:
             f.write(str(pi))
         print("Save complete.")
 
+def get_max_digits_from_ram():
+    """
+    Calculate the maximum number of digits of Pi based on available RAM.
+    """
+    ram = psutil.virtual_memory().total  # Total system RAM in bytes
+    max_digits = int((ram * 0.9) / 8)  # Assume 8 bytes per digit and use 90% of RAM
+    return max_digits
+
 if __name__ == "__main__":
-    digits = int(input("Enter the number of digits of Pi to compute: "))
+    max_digits = get_max_digits_from_ram()
+    print(f"Your system can support up to {max_digits} digits of Pi based on available RAM.")
+
+    digits = int(input(f"Enter the number of digits of Pi to compute (1-{max_digits}): "))
+    while digits < 1 or digits > max_digits:
+        print(f"Please enter a value between 1 and {max_digits}.")
+        digits = int(input(f"Enter the number of digits of Pi to compute (1-{max_digits}): "))
+
     chunk_size = input("Enter the chunk size (leave blank for auto): ")
     chunk_size = int(chunk_size) if chunk_size.strip() else None
     verbose = input("Enable verbose mode? (yes/no): ").strip().lower() == "yes"
