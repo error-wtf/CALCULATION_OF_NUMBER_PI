@@ -3,6 +3,7 @@ import os
 import psutil
 from functools import lru_cache
 from decimal import Decimal, getcontext
+import time
 
 class PiCalculator:
     def __init__(self, digits, chunk_size=None, verbose=True):
@@ -14,6 +15,7 @@ class PiCalculator:
             self.chunk_size = chunk_size
         self.output_file = "pi_partial_results.txt"
         self.verbose = verbose
+        self.log_file = "pi_calculation_log.txt"
 
         # Set precision for Decimal calculations
         getcontext().prec = digits + 10  # Add extra precision to avoid rounding issues
@@ -50,8 +52,12 @@ class PiCalculator:
         total = Decimal(0)
         for k in range(start, end):
             total += self.chudnovsky_term(k)
-            if self.verbose:
-                print(f"[Progress] Computing term {k} within chunk {start}-{end}: {total}")
+            # Log progress every 1000 iterations
+            if self.verbose and (k - start) % 1000 == 0:
+                print(f"[Progress] Term {k} computed in chunk {start}-{end}: {total}")
+                # Write progress to log file
+                with open(self.log_file, "a") as log:
+                    log.write(f"Term {k} in chunk {start}-{end}: {total}\n")
         return total
 
     def compute_pi(self):
