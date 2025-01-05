@@ -6,7 +6,8 @@ from decimal import Decimal, getcontext
 class PiCalculator:
     def __init__(self, digits, chunk_size=1000, verbose=True):
         self.digits = digits
-        self.chunk_size = chunk_size
+        # Adjust chunk size dynamically based on the number of digits
+        self.chunk_size = max(chunk_size, digits // 1000)
         self.output_file = "pi_partial_results.txt"
         self.verbose = verbose
 
@@ -56,6 +57,7 @@ class PiCalculator:
         print(f"Calculating Pi to {self.digits} digits...")
         total_terms = int(self.digits / math.log10(53360))  # Approximate number of terms needed
         print(f"Total number of terms: {total_terms}")
+        print(f"Using chunk size: {self.chunk_size}")
 
         if os.path.exists(self.output_file):
             os.remove(self.output_file)
