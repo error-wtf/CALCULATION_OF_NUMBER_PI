@@ -1,6 +1,5 @@
 import math
 import os
-import numpy as np
 import psutil
 from decimal import Decimal, getcontext
 
@@ -87,11 +86,14 @@ class NumpyPiCalculator:
 
     def save_to_file(self, pi):
         """
-        Save the computed value of Pi to a file.
+        Save the computed value of Pi to a file in chunks.
         """
         print("Saving result to 'pi.txt'...")
+        chunk_size = 10**6  # Save 1 million digits per chunk
         with open("pi.txt", "w") as f:
-            f.write(str(pi))
+            pi_str = str(pi)
+            for i in range(0, len(pi_str), chunk_size):
+                f.write(pi_str[i:i + chunk_size])
         print("Save complete.")
 
 def get_max_digits_from_ram():
@@ -99,7 +101,8 @@ def get_max_digits_from_ram():
     Calculate the maximum number of digits of Pi based on available RAM.
     """
     ram = psutil.virtual_memory().total  # Total system RAM in bytes
-    max_digits = int((ram * 0.9) / 8)  # Assume 8 bytes per digit and use 90% of RAM
+    # Account for both computation and saving (4x overhead)
+    max_digits = int((ram * 0.9) / (8 * 4))
     return max_digits
 
 if __name__ == "__main__":
