@@ -34,5 +34,5 @@ if %errorlevel% neq 0 (
 
 REM Run the Pi Calculator script
 echo Running Pi Calculator...
-pypy3 big_pi_pro_optimized.py
+pypy3 mpmath-pi.py
 pause
