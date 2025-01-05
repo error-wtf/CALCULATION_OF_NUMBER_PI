@@ -102,10 +102,15 @@ if __name__ == "__main__":
     max_digits = get_max_digits_from_ram()
     print(f"Your system can support up to {max_digits} digits of Pi based on available RAM.")
 
-    digits = int(input(f"Enter the number of digits of Pi to compute (1-{max_digits}): "))
-    while digits < 1 or digits > max_digits:
-        print(f"Please enter a value between 1 and {max_digits}.")
-        digits = int(input(f"Enter the number of digits of Pi to compute (1-{max_digits}): "))
+    while True:
+        try:
+            digits = int(input(f"Enter the number of digits of Pi to compute (1-{max_digits}): "))
+            if 1 <= digits <= max_digits:
+                break
+            else:
+                print(f"Please enter a value between 1 and {max_digits}.")
+        except ValueError:
+            print("Invalid input. Please enter an integer value.")
 
     chunk_size = input("Enter the chunk size (leave blank for auto): ")
     chunk_size = int(chunk_size) if chunk_size.strip() else None
