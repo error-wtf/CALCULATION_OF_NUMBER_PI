@@ -46,7 +46,7 @@ class PiCalculator:
         for k in range(start, end):
             total += self.chudnovsky_term(k)
             if self.verbose:
-                print(f"Computed term {k}: {total}")
+                print(f"[Progress] Computing term {k} within chunk {start}-{end}: {total}")
         return total
 
     def compute_pi(self):
@@ -64,7 +64,7 @@ class PiCalculator:
         for i in range(0, total_terms, self.chunk_size):
             start = i
             end = min(i + self.chunk_size, total_terms)
-            print(f"Computing chunk {start} to {end}...")
+            print(f"[Chunk Progress] Computing chunk {start} to {end}...")
             chunk_result = self.compute_chunk(start, end)
 
             # Save intermediate results
