@@ -1,6 +1,5 @@
 import math
 import os
-import numpy as np
 import psutil
 from decimal import Decimal, getcontext
 
@@ -17,18 +16,21 @@ class NumpyPiCalculator:
 
     def factorial(self, n):
         """
-        Compute factorial using numpy for performance.
+        Compute factorial using Decimal for high precision.
         """
-        return np.prod(np.arange(1, n + 1, dtype=np.float64))
+        result = Decimal(1)
+        for i in range(2, n + 1):
+            result *= i
+        return result
 
     def chudnovsky_term(self, k):
         """
-        Compute the k-th term of the Chudnovsky series using numpy and Decimal for precision.
+        Compute the k-th term of the Chudnovsky series using high-precision Decimal.
         """
         M = self.factorial(6 * k) / (self.factorial(3 * k) * self.factorial(k) ** 3)
         L = Decimal(13591409) + Decimal(545140134) * k
         X = (-1) ** k * Decimal(640320) ** (3 * k)
-        term = Decimal(M) * L / X
+        term = M * L / X
         return term
 
     def compute_chunk(self, start, end):
