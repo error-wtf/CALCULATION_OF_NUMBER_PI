@@ -4,10 +4,11 @@ from functools import lru_cache
 from decimal import Decimal, getcontext
 
 class PiCalculator:
-    def __init__(self, digits, chunk_size=1000):
+    def __init__(self, digits, chunk_size=1000, verbose=True):
         self.digits = digits
         self.chunk_size = chunk_size
         self.output_file = "pi_partial_results.txt"
+        self.verbose = verbose
 
         # Set precision for Decimal calculations
         getcontext().prec = digits + 10  # Add extra precision to avoid rounding issues
@@ -44,6 +45,8 @@ class PiCalculator:
         total = Decimal(0)
         for k in range(start, end):
             total += self.chudnovsky_term(k)
+            if self.verbose:
+                print(f"Computed term {k}: {total}")
         return total
 
     def compute_pi(self):
@@ -94,8 +97,9 @@ if __name__ == "__main__":
     # Get user input for number of digits and chunk size
     digits = int(input("Enter the number of digits of Pi to compute: "))
     chunk_size = int(input("Enter the chunk size (e.g., 1000): "))
+    verbose = input("Enable verbose mode? (yes/no): ").strip().lower() == "yes"
 
-    calculator = PiCalculator(digits, chunk_size)
+    calculator = PiCalculator(digits, chunk_size, verbose)
 
     # Compute Pi
     pi = calculator.compute_pi()
