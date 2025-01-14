@@ -42,3 +42,6 @@ COMMAND:
 - -d -> DIGITS -> -d 100G -> 100.000.000.000 DIGITS
 ---
 ENJOY AT OWN RISK !!!
+
+Paper for this Github:
+https://www.researchhub.com/paper/9021278/addressing-the-limitations-of-arbitrary-precision-computation-a-call-for-collaborative-solutions
