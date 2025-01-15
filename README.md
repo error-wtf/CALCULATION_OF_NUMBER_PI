@@ -61,6 +61,8 @@ potential of modern computing.
 - *.dll's are the libraries mentioned in the paper for C++
 - error.cpp is the source code of error_calculator.exe to show possible errors who can accure
 - tpi.exe was first and best approach for C++ but does errors at very very long digits too (search for the euler number e inside the results)
+- pi_calculator.exe at short digits works best for C++ but has errors too because it has no floating aritmetics - memory management should been done so
+- hoping someone beside me has the nerves to fix all this - or or and - fix the adressed issues inside the Paper
 ---
 READ THE PAPER !!!
 ---
