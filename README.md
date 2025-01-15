@@ -57,12 +57,12 @@ fully functional scripts, and identifies the bottlenecks in Python and C++ libra
 collaborative solution is proposed to overcome these limitations and harness the true
 potential of modern computing.
 
-
-*.dll's are the libraries mentioned in the paper for C++
-error.cpp is the source code of error_calculator.exe to show possible errors who can accure
-tpi.exe was first and best approach for C++ but does errors at very very long digits too (search for the euler number e inside the results)
-
+---
+- *.dll's are the libraries mentioned in the paper for C++
+- error.cpp is the source code of error_calculator.exe to show possible errors who can accure
+- tpi.exe was first and best approach for C++ but does errors at very very long digits too (search for the euler number e inside the results)
+---
 READ THE PAPER !!!
-
+---
 AGAIN ...
 ENJOY AT OWN RISK !!!
