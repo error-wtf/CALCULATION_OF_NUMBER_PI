@@ -31,7 +31,7 @@ https://www.youtube.com/watch?v=TloIt7cJEes
 
 
 ---
-COMMAND:
+COMMANDS FOR tpi.exe:
 - tpi -T 8 -m 6Gi -d 32G -o pi.txt 32G
 - MAX TESTED - NEED 64 GB OF RAM !!!
 - IF YOU HAVE LESS RAM CHANGE TO:
@@ -43,5 +43,26 @@ COMMAND:
 ---
 ENJOY AT OWN RISK !!!
 
+
+
+
 Paper for this Github:
 https://www.researchhub.com/paper/9021278/addressing-the-limitations-of-arbitrary-precision-computation-a-call-for-collaborative-solutions
+This paper highlights the significant challenges faced by researchers attempting to implement
+the Chudnovsky algorithm and other arbitrary precision computations in C++ and Python.
+Despite advances in hardware, existing libraries and scripts are insufficient for modern
+scientific needs, limiting both theoretical mathematics and applied sciences like astrophysics.
+This paper critiques the current state of open-source repositories, such as GitHub, which lack
+fully functional scripts, and identifies the bottlenecks in Python and C++ libraries. A
+collaborative solution is proposed to overcome these limitations and harness the true
+potential of modern computing.
+
+
+*.dll's are the libraries mentioned in the paper for C++
+error.cpp is the source code of error_calculator.exe to show possible errors who can accure
+tpi.exe was first and best approach for C++ but does errors at very very long digits too (search for the euler number e inside the results)
+
+READ THE PAPER !!!
+
+AGAIN ...
+ENJOY AT OWN RISK !!!
