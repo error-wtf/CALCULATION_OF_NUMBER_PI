@@ -40,6 +40,7 @@ COMMANDS FOR tpi.exe:
 - 4Gi -> 4GB of primary RAM used -> 32GB RAM NEEDED !!!
 - 2Gi -> 2GB of primary RAM used -> 16GB RAM NEEDED !!!
 - -d -> DIGITS -> -d 100G -> 100.000.000.000 DIGITS
+- for EASY USE of tpi.exe -> use : calculation of number pi - c++.bat
 ---
 ENJOY AT OWN RISK !!!
 
