@@ -47,7 +47,7 @@ ENJOY AT OWN RISK !!!
 
 
 Paper for this Github:
-https://www.researchhub.com/paper/9021278/addressing-the-limitations-of-arbitrary-precision-computation-a-call-for-collaborative-solutions
+https://www.researchhub.com/paper/9021279/addressing-the-limitations-of-arbitrary-precision-computation-a-call-for-collaborative-solutions
 This paper highlights the significant challenges faced by researchers attempting to implement
 the Chudnovsky algorithm and other arbitrary precision computations in C++ and Python.
 Despite advances in hardware, existing libraries and scripts are insufficient for modern
