@@ -1,0 +1,4 @@
+Total_RAM=63 GiB
+Available_Disk_Space=2416 GiB
+Max_Pi_Digits=12080000000000
+Required_RAM=2416 GiB
