@@ -62,9 +62,16 @@ potential of modern computing.
 - *.dll's are the libraries mentioned in the paper for C++
 - error.cpp is the source code of error_calculator.exe to show possible errors who can accure
 - tpi.exe was first and best approach for C++ but does errors at very very long digits too (search for the euler number e inside the results)
-- pi_calculator.exe at short digits works best for C++ but has errors too because it has no floating aritmetics - memory management should been done so
-- hoping someone beside me has the nerves to fix all this - or or and - fix the adressed issues inside the Paper
+- pi_calculator.exe at short digits works best for C++ but has errors too because it has no floating aritmetics - memory management should been done similar
+- pi-win-output-error.exe how it could be made if it then would not have memory errors and therefor cant create output
+- pi-win.exe maybe you have luck to have an output
+- -> just use calculation of number pi - c++.bat for C++ and rely to the Version of Copyright (c) 2009-2010 Fabrice Bellard
+- -> i only managed it inside python up to 1.000.000 digits -> so my math is correct -> but as mentioned in the paper -> its not so easy as said -> in C++ I failed (especialy at longer digits)
+- -> i had once a working version on my own made with C++ -> but that was year 1997 -> data is lost
 
+---
+- this project was a try to recover data from the year 1997 of a peace of my own source code (source-code.txt) i tried to make it work again
+- hoping someone beside me has the nerves to fix all this - or or and - fix the adressed issues inside the Paper
 ---
 ![image](https://github.com/user-attachments/assets/364c4382-04bc-4f79-8a50-1289f19948c8)
 
@@ -74,4 +81,5 @@ READ THE PAPER !!!
 ![image](https://github.com/user-attachments/assets/773e28b1-9ca7-4343-a333-a4f5231d7284)
 
 AGAIN ...
+
 ENJOY AT OWN RISK !!!
