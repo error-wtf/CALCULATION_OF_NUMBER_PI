@@ -40,7 +40,7 @@ COMMANDS FOR tpi.exe:
 - 4Gi -> 4GB of primary RAM used -> 32GB RAM NEEDED !!!
 - 2Gi -> 2GB of primary RAM used -> 16GB RAM NEEDED !!!
 - -d -> DIGITS -> -d 100G -> 100.000.000.000 DIGITS
-- for EASY USE of tpi.exe -> use : calculation of number pi - c++.bat
+- for EASY USE of tpi.exe -> use : !calculation of number pi - c++.bat!
 ---
 ENJOY AT OWN RISK !!!
 
@@ -65,7 +65,7 @@ potential of modern computing.
 - pi_calculator.exe at short digits works best for C++ but has errors too because it has no floating aritmetics - memory management should been done similar
 - pi-win-output-error.exe how it could be made if it then would not have memory errors and therefor cant create output
 - pi-win.exe maybe you have luck to have an output
-- -> just use calculation of number pi - c++.bat for C++ and rely to the Version of Copyright (c) 2009-2010 Fabrice Bellard
+- -> just use "calculation of number pi - c++.bat" for C++ and rely to the Version of Copyright (c) 2009-2010 Fabrice Bellard
 - -> i only managed it inside python up to 1.000.000 digits -> so my math is correct -> but as mentioned in the paper -> its not so easy as said -> in C++ I failed (especialy at longer digits)
 - -> i had once a working version on my own made with C++ -> but that was year 1997 -> data is lost
 
