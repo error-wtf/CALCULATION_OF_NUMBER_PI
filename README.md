@@ -70,8 +70,8 @@ potential of modern computing.
 - -> i had once a working version on my own made with C++ -> but that was year 1997 -> data is lost
 
 ---
-- this project was a try to recover data from the year 1997 of a peace of my own source code (source-code.txt) i tried to make it work again
-- hoping someone beside me has the nerves to fix all this - or or and - fix the adressed issues inside the Paper
+- this project was a try to recover data from the year 1997 of a piece of my own source code (source-code.txt) i tried to make it work again
+- hoping someone beside me has the nerves to fix all this - or, or and, - fix the adressed issues inside the Paper
 ---
 ![image](https://github.com/user-attachments/assets/364c4382-04bc-4f79-8a50-1289f19948c8)
 
