@@ -1,0 +1,155 @@
+module PiCalculation {
+
+    input digits;         // Anzahl der zu berechnenden Stellen von Pi
+    input chunk_size;     // Maximale Chunksize
+    input num_threads;    // Anzahl der verwendeten Threads
+
+    // Konstante Definitionen
+    constant A = 13591409;
+    constant B = 545140134;
+    constant C = 640320;
+    constant C3_24 = (C^3) / 24;
+    constant D = 426880;
+    constant E = sqrt(10005);
+
+    // Speicher und Ressourcenkontrolle
+    transformation getAvailableRAM {
+        output available_ram = system.availableRAM();
+    }
+
+    transformation getUsedRAM {
+        output used_ram = system.usedRAM();
+    }
+
+    transformation getAvailableDiskSpace {
+        output available_disk = system.availableDisk();
+    }
+
+    transformation getAvailableCores {
+        output cores = system.availableCores();
+    }
+
+    transformation getExecutableDirectory {
+        output directory = system.executableDirectory();
+    }
+
+    // Funktion zum Speichern eines Chunks in einer Datei
+    transformation saveChunkToFile(chunk, filename) {
+        file.append(filename, chunk);
+    }
+
+    // Funktion zur Berechnung von P, Q, T für einen Bereich von n1 bis n2
+    transformation computePQT(n1, n2) {
+        if n1 + 1 == n2 {
+            output P = (2 * n2 - 1) * (6 * n2 - 1) * (6 * n2 - 5);
+            output Q = C3_24 * n2^3;
+            output T = P * (A + B * n2) / Q;
+
+            if n2 % 2 != 0 {
+                T = -T;
+            }
+        } else {
+            let mid = (n1 + n2) / 2;
+            let left = computePQT(n1, mid);
+            let right = computePQT(mid, n2);
+
+            output P = left.P * right.P;
+            output Q = left.Q * right.Q;
+            output T = left.T + right.T;
+        }
+    }
+
+    // Normalisierung der Werte
+    transformation normalizePQT(P, Q, T) {
+        let scale_factor = sqrt(P * Q);
+        output P_norm = P / scale_factor;
+        output Q_norm = Q / scale_factor;
+        output T_norm = T / scale_factor;
+    }
+
+    // Speicherbereinigung
+    transformation clearPQT(chunk) {
+        output cleared_chunk = null;
+    }
+
+    // Funktion zur Berechnung des maximalen möglichen RAM
+    transformation calculateUsableRAM(available_ram) {
+        output usable_ram = (available_ram * 80) / 100;
+    }
+
+    // Benutzerinteraktion und Logging
+    transformation logMessage(message) {
+        output log = system.log(message);
+    }
+
+    transformation askUserYesNo(prompt) {
+        let user_input = system.userInput(prompt);
+        output confirmed = user_input.equalsIgnoreCase("yes");
+    }
+
+    transformation askUserForInput(prompt) {
+        output user_input = system.userInput(prompt);
+    }
+
+    transformation calculatePi(P_total, Q_total, T_total) {
+        if (A * Q_total + T_total) == 0 {
+            logMessage("Error: Division by zero in final Pi computation. Adjusting denominator.");
+            output pi = 0;
+        } else {
+            output pi = D * E * Q_total / (A * Q_total + T_total);
+        }
+    }
+
+    // Hauptpipeline zur Berechnung von Pi
+    pipeline main {
+        let available_ram = getAvailableRAM();
+        let used_ram = getUsedRAM();
+        let available_disk = getAvailableDiskSpace();
+        let cores = getAvailableCores();
+        let executable_dir = getExecutableDirectory();
+
+        logMessage("Available RAM: " + (available_ram / (1024 * 1024)) + " MB");
+        logMessage("Available Disk Space: " + (available_disk / (1024 * 1024)) + " MB");
+
+        let usable_ram = calculateUsableRAM(available_ram);
+        logMessage("Maximum usable RAM (80%): " + (usable_ram / (1024 * 1024)) + " MB");
+
+        if usable_ram < 1024 * 1024 * 500 {
+            logMessage("Error: Insufficient RAM for computation.");
+            throw "Insufficient RAM";
+        }
+
+        let max_digits = (usable_ram / 10) * 1000;
+        logMessage("The maximum digits that can be computed with available resources is approximately: " + max_digits);
+
+        let proceed = askUserYesNo("Do you want to proceed with this calculation? (yes/no): ");
+
+        if !proceed {
+            let digits_to_calculate = askUserForInput("Enter the number of digits you want to compute (up to " + max_digits + "): ");
+            if digits_to_calculate <= 0 or digits_to_calculate > max_digits {
+                logMessage("Error: Invalid number of digits entered. Exiting.");
+                throw "Invalid number of digits";
+            }
+            logMessage("Proceeding with " + digits_to_calculate + " digits.");
+        } else {
+            let digits_to_calculate = max_digits;
+        }
+
+        digits_to_calculate.iterate(chunk_size) {
+            let chunk = computePQT(start, end);
+            let normalized = normalizePQT(chunk.P, chunk.Q, chunk.T);
+
+            saveChunkToFile(normalized, executable_dir + "/chunk_results.txt");
+
+            output P_total += normalized.P_norm;
+            output Q_total += normalized.Q_norm;
+            output T_total += normalized.T_norm;
+
+            clearPQT(chunk);
+        } -> {
+            let pi = calculatePi(P_total, Q_total, T_total);
+            saveChunkToFile(pi, executable_dir + "/pi.txt");
+            logMessage("Pi successfully saved to 'pi.txt'.");
+        }
+    }
+}
