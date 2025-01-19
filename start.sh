@@ -29,27 +29,27 @@ begin() {
 B() {
     clear
     date
-
-    echo -e "\033[1;32mCalculate the number Pi with a [python] script (short version, 1,000,000 digits)\033[0m"
-    echo "Normally under Linux, all dependencies are set by default install of python." 
-    echo "If not, try [install]ing them."
-
+    echo -e "\033[1;37m========================================================================================================================\033[0m"
+    echo -e "\033[1;37mCalculate the number Pi - MULTIPLE OPTIONS\033[0m"
+    echo -e "\033[1;37m========================================================================================================================\033[0m"
+    echo -e "\033[1;32m[python]   Calculate Pi with Python (up to 1,000,000 digits)\033[0m"
+    echo -e "\033[1;32m[hybrid]   Calculate Pi using the hybrid Python algorithm\033[0m"
+    echo -e "\033[1;32m[workaround] Calculate Pi with Python and chunking {can cause calculation loop on too long digits}\033[0m"
+    echo -e "\033[1;32m[exit]     Exit the program\033[0m"
+    echo -e "\033[1;32mPS: To calculate Pi longer than 1,000,000 digits, a workaround is provided (64 GB RAM required).\033[0m"
     echo -e "\033[1;32mOr would you like to see [Fractals]?\033[0m"
     echo -e "\033[1;32mOr would you like to learn about [Fibonacci]?\033[0m"
     echo -e "\033[1;32mOr would you like to calculate the Square [Root]?\033[0m"
     echo -e "\033[1;32mOr would you like to calculate the [Square]?\033[0m"
     echo -e "\033[1;32mOpen my [HOMEPAGE]?\033[0m"
-    echo "[exit]"
-    echo -e "\033[1;32mPS: To calculate Pi longer than 1,000,000 digits - you have to switch to Windows for C++ instead of Python.\033[0m"
-    echo -e "\033[1;32mPS: Or to calculate Pi longer than 1,000,000 digits inside Linux - I made a [workaround] - but it’s not that fancy and takes a lot of calculation time. 64 GB RAM NEEDED !!!\033[0m"
     read -p "Choose an option: " variable
 
     case $variable in
-        PI|Pi|pi) INGE ;;
         someone|Someone|SOMEONE) M ;;
         HOMEPAGE|Homepage|homepage) CASU ;;
         install|Install|INSTALL) install_dependencies ;;
         python|Python|PYTHON) python_script ;;
+        hybrid|Hybrid|HYBRID) hybrid_script ;;
         EXIT|Exit|exit) Q ;;
         FRACTALS|Fractals|fractals) FRACTAL ;;
         FIBONACCI|Fibonacci|fibonacci) FIBONACI ;;
@@ -65,41 +65,6 @@ CASU() {
     begin
 }
 
-INGE() {
-    check_and_install_wine
-    if [ ! -f "tpi.exe" ]; then
-        echo "Error: tpi.exe not found in the current directory."
-        read -p "Press [Enter] to return to the main menu..."
-        begin
-        return
-    fi
-    echo "Calculating PI with 32 GB of memory using Wine and tpi.exe..."
-    wine tpi.exe -T 8 -m 6Gi -d 32G -o pi.txt 32G
-    if [ -f "pi.txt" ]; then
-        echo "Now writing to file pi.txt..."
-        cat pi.txt
-        echo "END OF DATA"
-    else
-        echo "Failed to generate pi.txt. Please check Wine and tpi.exe compatibility."
-    fi
-    read -p "Press [Enter] to continue..."
-    begin
-}
-
-M() {
-    check_and_install_wine
-    if [ ! -f "y-cruncher.exe" ]; then
-        echo "Error: y-cruncher.exe not found in the current directory."
-        read -p "Press [Enter] to return to the main menu..."
-        begin
-        return
-    fi
-    echo "Running y-cruncher with Wine..."
-    wine y-cruncher.exe
-    read -p "Press [Enter] to continue..."
-    begin
-}
-
 install_dependencies() {
     echo "Checking and installing dependencies if necessary..."
     ./big-pi-install.sh
@@ -109,10 +74,21 @@ install_dependencies() {
 
 python_script() {
     echo "Running installation script for Python dependencies..."
-    ./pi-install.sh  # First install dependencies
+    ./pi-install.sh
 
     echo "Starting Python script to calculate PI..."
-    ./pi-start.sh  # Then start the calculation
+    ./pi-start.sh
+
+    read -p "Press [Enter] to continue..."
+    begin
+}
+
+hybrid_script() {
+    echo "Running installation script for hybrid dependencies..."
+    ./install_hybrid_and_cplusplus.sh
+
+    echo "Starting hybrid Python algorithm for Pi calculation..."
+    python3 pi-hybrid.py
 
     read -p "Press [Enter] to continue..."
     begin

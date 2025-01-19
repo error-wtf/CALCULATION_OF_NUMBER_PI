@@ -10,37 +10,52 @@ cls
 color e
 date /T
 time /T
+color F0
+echo ==============================================================================================================================
+echo                                         Calculate the number Pi - MULTIPLE OPTIONS
+echo ==============================================================================================================================
 color a
-echo Calculate the number [PI] with 6 GB of RAM up to 32 billion digits?
-color 4
-echo (64 GB RAM required in total - may crash system - use at your own risk)
+echo [workaround] 	Calculate Pi with Python and chunking {can cause calculation loop on too long digits}
+echo [python]   	Calculate Pi with Python (up to 1,000,000 digits)
+echo [hybrid]   	Calculate Pi using my own hybrid Python algorithm (better memory management but never tested on long digits)
+echo [c++]      	Calculate Pi using the C++ program and choose how many billion digits you want to calculate
+color F0
+echo ==============================================================================================================================
+echo [exit]     	Exit the program
+echo ==============================================================================================================================
+color a
+echo 				Calculate the number [PI] with 6 GB of RAM up to 32 billion digits?
+color F0
+echo ==============================================================================================================================
+echo 				(64 GB RAM required in total - may crash system - use at your own risk)
+echo ==============================================================================================================================
 color a
 echo Calculate the number Pi with a [python] script (short version, 1,000,000 digits)
-echo PS: I made a [workaround] to calculate Pi with more digits, but 64 GB RAM NEEDED !!! and its not so fancy like in python.
+echo PS: I made a [workaround] to calculate Pi with more digits, but 64 GB RAM NEEDED !!! and it’s not so fancy like in Python.
 echo Or would you like to see [Fractals]?
 echo Or would you like to learn about [Fibonacci]?
 echo Or would you like to calculate the Square [Root]?
 echo Or would you like to calculate the [Square]?
+echo ==============================================================================================================================
 echo Open my [HOMEPAGE]?
 echo [exit]
-
+echo ==============================================================================================================================
 set /p variable=
 
 if /i %variable% == PI goto :INGE
 if /i %variable% == Pi goto :INGE
 if /i %variable% == pi goto :INGE
-if /i %variable% == someone goto :M
-if /i %variable% == Someone goto :M
-if /i %variable% == SOMEONE goto :M
-if /i %variable% == HOMEPAGE goto :CASU
-if /i %variable% == Homepage goto :CASU
-if /i %variable% == homepage goto :CASU
-if /i %variable% == python goto :python
-if /i %variable% == Python goto :python
-if /i %variable% == PYTHON goto :python
-if /i %variable% == EXIT goto :Q
-if /i %variable% == Exit goto :Q
-if /i %variable% == exit goto :Q
+if /i %variable% == python goto :PYTHON
+if /i %variable% == Python goto :PYTHON
+if /i %variable% == PYTHON goto :PYTHON
+if /i %variable% == hybrid goto :HYBRID
+if /i %variable% == Hybrid goto :HYBRID
+if /i %variable% == HYBRID goto :HYBRID
+if /i %variable% == c++ goto :CPP
+if /i %variable% == C++ goto :CPP
+if /i %variable% == exit goto :END
+if /i %variable% == Exit goto :END
+if /i %variable% == EXIT goto :END
 if /i %variable% == FRACTALS goto :FRACTAL
 if /i %variable% == Fractals goto :FRACTAL
 if /i %variable% == fractals goto :FRACTAL
@@ -58,6 +73,31 @@ if /i %variable% == Workaround goto :WORKAROUND
 if /i %variable% == workaround goto :WORKAROUND
 
 goto :begin
+
+:PYTHON
+ECHO Starting Python calculation...
+CALL pi-install-python.bat
+PAUSE
+GOTO begin
+
+:HYBRID
+ECHO Starting Pi hybrid calculation...
+CALL install_hybrid_and_cplusplus.bat
+CALL python pi-hybrid.py
+PAUSE
+GOTO begin
+
+:CPP
+ECHO Starting C++ Pi calculation...
+CALL install_hybrid_and_cplusplus.bat
+CALL "calculation of number pi - c++.bat"
+PAUSE
+GOTO begin
+
+:END
+ECHO Exiting...
+ENDLOCAL
+EXIT /B
 
 :CASU
 @echo off
@@ -77,12 +117,6 @@ goto :begin
 :M
 @echo off
 call y-cruncher.exe
-pause
-goto :begin
-
-:python 
-@echo off
-call pi-install-python.bat
 pause
 goto :begin
 
@@ -116,7 +150,3 @@ call big-pi-install.bat
 call python big-pi.py
 pause
 goto :begin
-
-:Q
-@echo off
-exit
