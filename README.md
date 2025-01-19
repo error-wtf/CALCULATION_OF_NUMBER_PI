@@ -8,7 +8,8 @@
 - WINDOWS MENU
 - Run
 - 1. start.bat
-- ![windows-menu](https://github.com/user-attachments/assets/9331c833-28b2-4baa-965b-ebcf2604bf5a)
+- ![windows-menu]![image](https://github.com/user-attachments/assets/b3bc1c65-bb61-4a5e-b3da-cd23a27ea555)
+
 
 - LINUX MENU
 - Run
@@ -18,7 +19,8 @@
 - sudo apt install python3-gmpy2
 - sudo chmod a+x *.sh
 - sudo ./pi-install.sh
-- ![linux-menu](https://github.com/user-attachments/assets/64c8373c-a8e5-4cbf-9c65-ef3e1d859d1c)
+- ![linux-menu]![image](https://github.com/user-attachments/assets/8e5ab46c-781d-4e32-85fb-8f4396a6aa45)
+
 
 - WSL not supported because of DISPLAY ERROR OF MATHPLOIT -  AS YOU ARE IN WINDOWS -> USE WINDOWS VERSION
 - WORKAROUND for longer digits NEEDS 64 GB RAM !!! CAN CAUSE MEMORY OVERFLOW !!!
