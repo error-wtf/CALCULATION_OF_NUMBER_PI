@@ -1,4 +1,4 @@
-### **"# CALCULATION_OF_NUMBER_PI AFTER THE FORMULA OF CHUDNOVSKI**
+### ** CALCULATION_OF_NUMBER_PI AFTER THE FORMULA OF CHUDNOVSKI**
 - 6GB RAM USED - 64GB RAM NEEDED !!!
 - CALCULATION OF 32.000.000.000 DIGITS OF PI
 - USE AT YOUR OWN RISK !!!
@@ -54,7 +54,7 @@ COMMANDS FOR tpi.exe:
 
 
 
-### **"Paper for this Github:"**
+### **Paper for this Github:**
 https://www.researchhub.com/paper/9021279/addressing-the-limitations-of-arbitrary-precision-computation-a-call-for-collaborative-solutions
 This paper highlights the significant challenges faced by researchers attempting to implement
 the Chudnovsky algorithm and other arbitrary precision computations in C++ and Python.
