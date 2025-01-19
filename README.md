@@ -28,8 +28,9 @@
 - WSL not supported because of DISPLAY ERROR OF MATHPLOIT -  AS YOU ARE IN WINDOWS -> USE WINDOWS VERSION
 - WORKAROUND for longer digits NEEDS 64 GB RAM !!! CAN CAUSE MEMORY OVERFLOW !!!
 
-WATCH THIS DISCLAIMER:
-https://www.youtube.com/watch?v=TloIt7cJEes
+### WATCH THIS DISCLAIMER BEFORE USE
+[![Watch the disclaimer on YouTube](https://img.youtube.com/vi/TloIt7cJEes/0.jpg)](https://www.youtube.com/watch?v=TloIt7cJEes)
+
 
 
 
