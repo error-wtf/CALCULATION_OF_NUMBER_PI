@@ -22,7 +22,8 @@
 - sudo apt install python3-gmpy2
 - sudo chmod a+x *.sh
 - sudo ./pi-install.sh
-- ![linux-menu]!![image](https://github.com/user-attachments/assets/0bf15934-eb6f-4bd4-aab0-85dcc96eaf0e)
+- ![linux-menu]!![image](https://github.com/user-attachments/assets/631b96af-c8a9-4002-a281-8dc2224164c9)
+
 
 
 
