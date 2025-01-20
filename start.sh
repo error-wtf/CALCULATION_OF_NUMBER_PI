@@ -36,7 +36,7 @@ B() {
     echo -e "\033[1;32m[hybrid]   Calculate Pi using the hybrid Python algorithm\033[0m"
     echo -e "\033[1;32m[workaround] Calculate Pi with Python and chunking {can cause calculation loop on too long digits}\033[0m"
     echo -e "\033[1;32m[exit]     Exit the program\033[0m"
-    echo -e "\033[1;32mPS: To calculate Pi longer than 1,000,000 digits, a workaround is provided (64 GB RAM required).\033[0m"
+    echo -e "\033[1;32mPS: To calculate Pi longer than 1,000,000 digits, a [workaround] is provided (64 GB RAM required).\033[0m"
     echo -e "\033[1;32mOr would you like to see [Fractals]?\033[0m"
     echo -e "\033[1;32mOr would you like to learn about [Fibonacci]?\033[0m"
     echo -e "\033[1;32mOr would you like to calculate the Square [Root]?\033[0m"
