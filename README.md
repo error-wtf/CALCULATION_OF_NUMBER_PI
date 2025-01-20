@@ -98,4 +98,4 @@ AGAIN ...
 https://numberworld.org/y-cruncher/
 ### **THIS GITHUB IS FOR UNDERSTANDING THE MATH AND DIFFICULTIES BEHIND**
 
-[![Fehlerbehebung: command not found](https://img.youtube.com/vi/ev7e9sfWIJo/0.jpg)](https://www.youtube.com/watch?v=ev7e9sfWIJo)
+[![command not found](https://img.youtube.com/vi/ev7e9sfWIJo/0.jpg)](https://www.youtube.com/watch?v=ev7e9sfWIJo)
