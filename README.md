@@ -8,7 +8,8 @@
 - WINDOWS MENU
 - Run
 - 1. start.bat
-- ![windows-menu]!![image](https://github.com/user-attachments/assets/36deaff0-93df-49a1-b3aa-380d6a64f788)
+- ![windows-menu]!![image](https://github.com/user-attachments/assets/f4d6dfb5-cba7-449c-88e3-57d531afd4a2)
+
 
 
 
