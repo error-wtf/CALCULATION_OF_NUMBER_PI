@@ -25,8 +25,7 @@ size_t getAvailableRAM() {
 // ------------------------------
 // Konstanten für die Chudnovsky-Methode (GPU)
 // ------------------------------
-// Dynamische Initialisierung ist für __constant__ nicht erlaubt –
-// daher werden hier die Werte direkt gesetzt.
+// Dynamische Initialisierung ist für __constant__ nicht erlaubt – daher werden die Werte direkt gesetzt.
 __constant__ double A = 13591409.0;
 __constant__ double B = 545140134.0;
 __constant__ double C = 640320.0;
@@ -101,7 +100,8 @@ mpf_class compute_chudnovsky_gpu(int terms_count, int threads_per_block) {
     
     auto start_time = std::chrono::high_resolution_clock::now();
     compute_terms<<<blocks, threads_per_block>>>(device_numerators, device_denominators, 0, terms_count);
-    check_cuda_error(cudaGetLastError(), "Kernel-Ausführung");
+    cudaError_t err = cudaGetLastError();  // Korrektur: Verwende cudaGetLastError()
+    check_cuda_error(err, "Kernel-Ausführung");
     check_cuda_error(cudaDeviceSynchronize(), "cudaDeviceSynchronize");
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end_time - start_time;
@@ -129,8 +129,8 @@ mpf_class compute_chudnovsky_gpu(int terms_count, int threads_per_block) {
 // CPU-basierte multipräzise Berechnung der Chudnovsky-Methode mit GMP (Chunking-Version)
 // Diese Funktion teilt die Iterationen in Chunks auf, schreibt den aktuellen Summenwert
 // in die Datei "chunk.txt" und liefert schließlich π = C / S zurück.
-mpf_class compute_chudnovsky_cpu(int iterations, int chunk_size) {
-    // Lösche ggf. vorhandene "chunk.txt"
+mpf_class compute_chudnovsky_cpu(int iterations, int chunk_size = 1000) {
+    // Lösche vorhandene "chunk.txt", falls vorhanden
     std::remove("chunk.txt");
     
     mpf_set_default_prec(1000000);
@@ -170,14 +170,14 @@ mpf_class compute_chudnovsky_cpu(int iterations, int chunk_size) {
 // basierend auf der gewünschten Anzahl Nachkommastellen.
 // Für niedrige Präzision (bis ca. 700 Nachkommastellen) wird die hybride Methode verwendet,
 // ansonsten die CPU-basierte multipräzise Berechnung (mit Chunking).
-void calculate_pi_hybrid(int desiredDecimalPlaces, int terms_count, int threads_per_block, int bbp_terms, int chunk_size) {
+void calculate_pi_hybrid(int desiredDecimalPlaces, int terms_count, int threads_per_block, int bbp_terms) {
     std::string resultStr;
     if (desiredDecimalPlaces > 700) {
         std::cout << "\nHohe Präzision gewünscht: " << desiredDecimalPlaces << " Nachkommastellen." << std::endl;
         int iterations = desiredDecimalPlaces / 14 + 1;
         if (iterations < 1) iterations = 1;
         mpf_set_default_prec(desiredDecimalPlaces * 4);
-        mpf_class pi_cpu = compute_chudnovsky_cpu(iterations, chunk_size);
+        mpf_class pi_cpu = compute_chudnovsky_cpu(iterations);
         int outputPrecision = desiredDecimalPlaces;
         size_t bufferSize = outputPrecision + 10;
         char* buffer = new char[bufferSize];
@@ -198,7 +198,7 @@ void calculate_pi_hybrid(int desiredDecimalPlaces, int terms_count, int threads_
         delete[] buffer;
     }
     
-    // Ergebnis zusätzlich in die Datei "pi.txt" schreiben
+    // Schreibe das Ergebnis zusätzlich in die Datei "pi.txt"
     std::ofstream outFile("pi.txt");
     if (outFile.is_open()) {
         outFile << resultStr;
@@ -214,23 +214,21 @@ void calculate_pi_hybrid(int desiredDecimalPlaces, int terms_count, int threads_
 // Ermittelt anhand des verfügbaren Hauptspeichers (70% des RAM)
 // und des freien Festplattenspeichers im aktuellen Verzeichnis
 // ein maximales Limit an Nachkommastellen (heuristisch).
-// Anschließend wird der Benutzer zur Eingabe aufgefordert.
+// Das Limit wird hier dynamisch anhand der Systemressourcen berechnet.
 int main() {
     size_t availableRam = getAvailableRAM();
     size_t mainRamLimit = static_cast<size_t>(availableRam * 0.70);
     size_t mainRamLimitMB = mainRamLimit / (1024 * 1024);
-    // Heuristik: 2 MB pro 10 Nachkommastellen, geteilt durch Faktor 5 (um zusätzlichen Bedarf zu berücksichtigen)
-    size_t heuristic_digits_ram = ((mainRamLimitMB / 2) * 10) / 5;
     
+    // Heuristik: Verwende das Hauptspeicherlimit (in MB) als potentielles Maximum an Nachkommastellen
+    size_t heuristic_digits_ram = mainRamLimitMB; 
     fs::path currentPath = fs::current_path();
     auto diskSpace = fs::space(currentPath);
     size_t freeDiskBytes = diskSpace.free;
     size_t freeDiskMB = freeDiskBytes / (1024 * 1024);
-    size_t heuristic_digits_disk = ((freeDiskMB / 2) * 10) / 5;
-    
+    size_t heuristic_digits_disk = freeDiskMB;
     size_t system_max_allowed = std::min(heuristic_digits_ram, heuristic_digits_disk);
     
-    // Hier setzen wir das interne Maximum ausschließlich anhand der Systemressourcen.
     int max_allowed_digits = (int)system_max_allowed;
     
     std::cout << "Verfügbarer Hauptspeicher: " << availableRam / (1024 * 1024) << " MB" << std::endl;
@@ -250,19 +248,12 @@ int main() {
         desiredDecimalPlaces = max_allowed_digits;
     }
     
-    // Moduswahl: Bei double‑Precision (hybride Methode) verwenden wir maximal 700 Nachkommastellen.
     if (desiredDecimalPlaces > 700) {
         std::cout << "\nEs wird die CPU-basierte multipräzise Berechnung verwendet." << std::endl;
     } else {
         std::cout << "\nEs wird die hybride Methode (GPU + CPU) verwendet." << std::endl;
     }
     
-    // Heuristik für die Chunk-Größe (z. B. wenn Hauptspeicherlimit in MB > 10000, dann größere Chunks)
-    int chunk_size = 1000;
-    if (mainRamLimitMB > 10000)
-        chunk_size = 5000;
-    
-    // Moduswahl: ≤ 700 Nachkommastellen -> hybride Methode; > 700 -> CPU multipräzise
     if (desiredDecimalPlaces <= 700) {
         int terms_count = desiredDecimalPlaces / 14 + 1;
         if (terms_count < 1) terms_count = 1;
@@ -273,13 +264,13 @@ int main() {
         std::cout << "Chudnovsky-Terme (GPU): " << terms_count << std::endl;
         std::cout << "BBP-Terme (CPU): " << bbp_terms << std::endl;
         
-        calculate_pi_hybrid(desiredDecimalPlaces, terms_count, threads_per_block, bbp_terms, chunk_size);
+        calculate_pi_hybrid(desiredDecimalPlaces, terms_count, threads_per_block, bbp_terms);
     } else {
         std::cout << "\nHohe Präzision gewünscht: " << desiredDecimalPlaces << " Nachkommastellen." << std::endl;
         int iterations = desiredDecimalPlaces / 14 + 1;
         if (iterations < 1) iterations = 1;
         mpf_set_default_prec(desiredDecimalPlaces * 4);
-        mpf_class pi_cpu = compute_chudnovsky_cpu(iterations, chunk_size);
+        mpf_class pi_cpu = compute_chudnovsky_cpu(iterations);
         int outputPrecision = desiredDecimalPlaces;
         size_t bufferSize = outputPrecision + 10;
         char* buffer = new char[bufferSize];
