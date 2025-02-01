@@ -110,3 +110,6 @@ Semus in unu mundu chi cun s’ignorantzia chi ha guardau pro tanti tempus is no
 
 Deu appu donau totu. Ma no podint ringratziari. Issus si funt affundados in su penseru destruttivu de su odiu e de sa destrutzioni. Poita nois depimus circai de no perdiri mancu sa nostra anima. Su coro de su chi si narat veridade e amori. Poita suos bollint bogai a nois custu puru. A nois e a totus in su mundu. Po custu est tempus de no fujiri, comenti una familia, prus chi est necessariu. Ma de si preparai po is tempos diffìcilis, e poi de essi presentes pro noi, cando servit. Pareti pocu, ma est meda, comparendi cun su nudda chi resta.
 
+PS:
+COMPILE INSIDE LINUX FINAL CODE:
+nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
