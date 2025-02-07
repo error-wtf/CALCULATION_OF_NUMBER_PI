@@ -100,7 +100,10 @@ https://numberworld.org/y-cruncher/
 
 [![command not found](https://img.youtube.com/vi/ev7e9sfWIJo/0.jpg)](https://www.youtube.com/watch?v=ev7e9sfWIJo)
 
-[![YouTube Video](https://img.youtube.com/vi/nXQraugWbjQ/0.jpg)](https://www.youtube.com/watch?v=nXQraugWbjQ)
+### The Problem on long digits 
+
+[![YouTube Video](https://img.youtube.com/vi/4V2eOQLW1Mk/0.jpg)](https://www.youtube.com/shorts/4V2eOQLW1Mk)
+
 
 Immo purtroppu, su nostu caminu est istau pienu de trabballas e de obbligos familiares. Deu, poita mancu, appu cussidu de donai a sa familia, e de amprendiri pasos chi a su primu parìnt che pareint minores, ma chi, canto prus tempu passaiant, tantu prus che diventant pesantis, comenti pedras chi no si podint torrai. Essi s’intorciant in trabballas chi cherint impossibiles a suparai. Deu non andaiu prus a circai in is detalus de sa matematica; a fini contat puru custa chi nois naraiamus experiencia de vida. Ammira sa situatzioni politica nostra: faeddant giai apertamenti de is segnus de s’infamiu fascismu. Non tenimus prus tempus po torrai a iscriri a s’università. Su dimoniu no est prus, comenti s’omu in su luna, chi paria lontanu meda e chi no podiat fai mali veru. Est tempus de concentrarisi in su chi contat prus: su camparu giornalieri.
 
