@@ -116,3 +116,7 @@ Deu appu donau totu. Ma no podint ringratziari. Issus si funt affundados in su p
 PS:
 COMPILE INSIDE LINUX FINAL CODE:
 nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
+
+## License
+
+*ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)* 2024 © Lino Casu
