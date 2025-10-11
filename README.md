@@ -1,3 +1,5 @@
+# CALCULATION_OF_NUMBER_PI AFTER THE FORMULA OF CHUDNOVSKI
+
 ## NVIDIA GRAPHICS CARD NEEDED AND CUDA TOOLS INSTALLED !!!
 
 ### Linux:
@@ -174,4 +176,5 @@ nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
 ## License
 
 *ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)* 2024 © Lino Casu
+
 
