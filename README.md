@@ -1,3 +1,57 @@
+## NVIDIA GRAPHICS CARD NEEDED AND CUDA TOOLS INSTALLED !!!
+
+### Linux:
+```
+sudo apt update
+sudo apt install -y build-essential cmake libboost-dev nvidia-cuda-toolkit
+chmod a+x pi-error-wtf-v1.0-Linux.deb
+dpkg -i pi-error-wtf-v1.0-Linux.deb
+```
+Then execute it with:
+```
+pi-error-wtf
+```
+Example:
+
+```
+--------------------------------
+pi-error-wtf - A Pi Computation Suite
+Copyright © 2025 Carmen Wrede und Lino Casu
+--------------------------------
+System Resource Overview
+--------------------------------
+Free RAM: 33.86 GB
+Free Disk Space: 471.93 GB
+Total Swap Space: 0.00 GB
+Free GPU VRAM: 13382.00 MB
+--------------------------------
+Maximum recommended digits based on resources: 2545176453
+Note: For very large calculations, RAM (70% free) and Disk (90% free minus swap) are the primary limits.
+
+Enter the output file path (default: pi.txt):
+Enter the number of digits to compute (2-2545176453): 1000001
+
+Using algorithm: chudnovsky-gpu
+Computing 1000001 digits...
+Output will be saved to: pi.txt
+
+Wrote π with 1000001 digits to pi.txt using chudnovsky-gpu algorithm.
+```
+
+
+### Windows
+
+Just open the EXE-File
+
+## minimum PC-Requirements:
+
+Testet on:
+
+64gb ram
+NVIDIA Geforce RTX 4060 TI 
+(YOU WILL NEED A NVIDIA CARD AND CUDA TOOLS INSTALLED)
+i9 cpu
+
 ### CALCULATION_OF_NUMBER_PI AFTER THE FORMULA OF CHUDNOVSKI
 - 6GB RAM USED - 64GB RAM NEEDED !!!
 - CALCULATION OF 32.000.000.000 DIGITS OF PI
@@ -120,3 +174,4 @@ nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
 ## License
 
 *ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)* 2024 © Lino Casu
+
