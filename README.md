@@ -1,11 +1,5 @@
 ## CALCULATION_OF_NUMBER_PI AFTER THE FORMULA OF CHUDNOVSKI
 
-## 🔁 Google Colab Auto-Runner
-
-Du kannst das Projekt direkt in Google Colab starten, ohne lokale Einrichtung:
-
-[![Öffnen in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/error-wtf/CALCULATION_OF_NUMBER_PI/blob/main/Pi_Autorunner.ipynb)
-
 ## NVIDIA GRAPHICS CARD NEEDED AND CUDA TOOLS INSTALLED !!!
 
 ### Linux:
@@ -182,6 +176,7 @@ nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
 ## License
 
 *ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)* 2024 © Lino Casu
+
 
 
 
