@@ -3,6 +3,9 @@
 Both the sum-of-three-cubes problem and Egyptian fraction identities are structurally related:
 the first constructs a value from three spatial volumetric components (x³ + y³ + z³ = k), while the second decomposes unity using four inverse dimensions -  three spatial and one temporal (1/x + 1/y + 1/z + 1/t = 1). One can literally see the time component appearing in the Euler/Riemann side.
 
+<img width="4928" height="4131" alt="pi_limit_42_proof_english" src="https://github.com/user-attachments/assets/203b3369-f6d5-49ba-bfbb-17eeacd99d45" />
+
+https://github.com/error-wtf/Segmented-Spacetime-Mass-Projection-Unified-Results
 
 
 ## NVIDIA GRAPHICS CARD NEEDED AND CUDA TOOLS INSTALLED !!!
@@ -181,6 +184,7 @@ nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
 ## License
 
 *ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)* 2024 © Lino Casu
+
 
 
 
