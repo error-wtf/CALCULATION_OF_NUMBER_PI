@@ -5,6 +5,7 @@ the first constructs a value from three spatial volumetric components (x³ + y³
 
 ```math
 V = x^3 + y^3 + z^3 \\
+
 1 = \frac{1}{x} + \frac{1}{y} + \frac{1}{z} + \frac{1}{t}
 ```
 
@@ -193,6 +194,7 @@ nvcc -x cu final-linux-cuda-pi-hybrid.cpp -o pi_calculator -lgmp -lgmpxx
 ## License
 
 *ANTI-CAPITALIST SOFTWARE LICENSE (v 1.4)* 2024 © Lino Casu
+
 
 
 
